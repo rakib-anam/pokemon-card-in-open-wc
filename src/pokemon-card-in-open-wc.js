@@ -48,7 +48,7 @@ button:active
 
   render() {
     return html`
-      <head>
+<head>
   <title>Pokemon Card</title>
 </head>
 
