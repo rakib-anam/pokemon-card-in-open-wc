@@ -1,27 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="Description" content="Put your description here." />
+    <base href="/" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #ededed;
+      }
+      button {
+        padding: 12px;
+        font-size: 20px;
+      }
+      button:hover {
+        background-color: orange;
+      }
+      button:active {
+        background-color: black;
+      }
+    </style>
+    <title>pokemon-card-in-open-wc</title>
+  </head>
 
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
-  <title>pokemon-card-in-open-wc</title>
-</head>
+  <body>
+    <div class="buttons">
+      <button class="duplicateButton">Duplicate</button>
+      <button class="deleteButton">Delete</button>
+      <button class="changeNameButton">Change Name</button>
+    </div>
+    <div id="card-container">
+      <pokemon-card-in-open-wc></pokemon-card-in-open-wc>
+    </div>
 
-<body>
-  <pokemon-card-in-open-wc></pokemon-card-in-open-wc>
-  <script type="module" src="./src/pokemon-card-in-open-wc.js"></script>
-</body>
+    <script type="module" src="./src/pokemon-card-in-open-wc.js"></script>
+    <script>
+      //DUPLICATE
+      //querySelect the duplicateButton then addEventListener to it
+      document
+        .querySelector(".duplicateButton")
+        .addEventListener("click", function (e) {
+          //querySelect and then clone the entire card component
+          const clonedCard = document
+            .querySelector("pokemon-card-in-open-wc")
+            .cloneNode();
+          //append the clone card to the card-container div
+          document.querySelector("#card-container").appendChild(clonedCard);
+        });
 
+      //DELETE
+      //querySelect the deleteButton then addEventListener to it
+      document
+        .querySelector(".deleteButton")
+        .addEventListener("click", function (e) {
+          //remove the last cloned instance of the card component
+          //create an array of allCards instances using querySelectorAll
+          //only remove the last card instance
+          //IF the array has at least 1 card in it
+          //to preserve the original card component
+          const allCards = document.querySelectorAll("pokemon-card-in-open-wc");
+          if (allCards.length > 1) {
+            document
+              .querySelector("#card-container")
+              .removeChild(allCards[allCards.length - 1]);
+          } else {
+            alert("!! YOU CAN NOT DELETE CHARIZARD !!");
+          }
+        });
+
+      //CHANGE NAME
+      //querySelect the ChangeNameButton then addEventListener to it
+      document
+        .querySelector(".changeNameButton")
+        .addEventListener("click", function (e) {
+          //get newName from user input
+          let newName = prompt("Name this pokemon...");
+          //querySelect the .name global variable then change its value to newName
+          document.querySelector("pokemon-card-in-open-wc").name = newName;
+        });
+    </script>
+  </body>
 </html>
