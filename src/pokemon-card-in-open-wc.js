@@ -15,6 +15,20 @@ class PokemonCardInOpenWc extends LitElement {
     {
       type: String, 
       reflect: true
+    },
+    imageUrl: {
+      type: String, 
+      reflect: true,
+    },
+    topText: 
+    {
+      type: String, 
+      reflect: true
+    },
+    bottomText: 
+    {
+      type: String, 
+      reflect: true
     }
   }
 
@@ -60,6 +74,10 @@ class PokemonCardInOpenWc extends LitElement {
     super();
     this.header = 'My Pokemon Card';
     this.name = "Charizard";
+    this.imageUrl = "../assets/charizard.jpg";
+    this.topText = "CHARIII";
+    this.bottomText = "ZAAARD";
+
   }
 
   render() 
@@ -73,8 +91,8 @@ class PokemonCardInOpenWc extends LitElement {
       <!--
       <img class="image" src="${charizardImage}"/>
       -->
-        <meme-maker image-url=${charizardImage}
-        top-text="CHARIII" bottom-text="ZAAAARD">
+        <meme-maker image-url=${this.imageUrl}
+        top-text=${this.topText} bottom-text=${this.bottomText}>
   </meme-maker>
 
         <div class="header">
@@ -84,9 +102,7 @@ class PokemonCardInOpenWc extends LitElement {
         <div class="details">
           <details>
             <summary>About this Pokemon</summary>
-            <p>
-              Charizard is a Fire/Flying type Pokémon introduced in Generation 1. It is known as the Flame Pokémon. Charizard has two Mega Evolutions available in its X & Y forms. In in Mega evolved form, Charizard is arguably the most powerful pokemon
-            </p>
+            <slot></slot>
           </details>
         </div>
       </div>
