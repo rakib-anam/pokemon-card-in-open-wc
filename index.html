@@ -36,6 +36,7 @@
       <button class="duplicateButton">Duplicate</button>
       <button class="deleteButton">Delete</button>
       <button class="changeNameButton">Change Name</button>
+      <button data-toggle-btn>Toggle Info</button>
     </div>
     <div id="card-container">
       <pokemon-card-in-open-wc></pokemon-card-in-open-wc>
@@ -85,6 +86,26 @@
           let newName = prompt("Name this pokemon...");
           //querySelect the .name global variable then change its value to newName
           document.querySelector("pokemon-card-in-open-wc").name = newName;
+        });
+
+      //TOGGLE INFO
+      //querySelect the Toggle Info button then addEventListener to it
+      document
+        .querySelector("button[data-toggle-btn]")
+        .addEventListener("click", (e) => {
+          //go through SHADOWROOT to querySelect the details tag and save it in variable
+          const details = document
+            .querySelector("pokemon-card-in-open-wc")
+            .shadowRoot.querySelector("details");
+          console.log(details);
+          //if details tag is already open, close it
+          if (details.getAttribute("open")) {
+            details.removeAttribute("open");
+          }
+          //else if details tag is closed, open it
+          else {
+            details.setAttribute("open", "open");
+          }
         });
     </script>
   </body>
