@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 //variable for local charizard image in assets folder
 const charizardImage = new URL('../assets/charizard.jpg', import.meta.url).href;
@@ -67,9 +68,14 @@ class PokemonCardInOpenWc extends LitElement {
       <head>
         <title>Pokemon Card</title>
       </head>
-
+      
       <div class="wrapper">
-        <img class="image" src="${charizardImage}"/>
+      <!--
+      <img class="image" src="${charizardImage}"/>
+      -->
+        <meme-maker image-url=${charizardImage}
+        top-text="CHARIII" bottom-text="ZAAAARD">
+  </meme-maker>
 
         <div class="header">
           <h1>${this.name}</h1>
